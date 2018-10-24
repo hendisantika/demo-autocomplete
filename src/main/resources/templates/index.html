@@ -18,6 +18,9 @@
 <body>
 
 Nama : <input id="nama" type="text">
+<br><br>
+
+Yang Menerima : <input id="ygMenerima" type="text">
 
 
 <script>
@@ -43,16 +46,27 @@ Nama : <input id="nama" type="text">
     //
     // });
 
+    var nama = document.getElementById('nama');
+
     var options = {
         url: 'http://localhost:8080/api/users',
         getValue: "nama",
         list: {
             match: {
                 enabled: true
+            },
+            onClickEvent: function () {
+                document.getElementById("ygMenerima").value = nama.value;
             }
         }
     };
     $("#nama").easyAutocomplete(options);
+
+    var ygMenerima = document.getElementById('ygMenerima').value;
+
+    nama.addEventListener('keyup', function (e) {
+        document.getElementById("ygMenerima").value = nama.value;
+    });
 </script>
 
 </body>
